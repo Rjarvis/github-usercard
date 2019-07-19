@@ -2,6 +2,9 @@
            (replacing the palceholder with your Github name):
            https://api.github.com/users/<your name>
 */
+const axios = require('axios');
+
+axios.get('https://api.github.com/users/Rjarvis');
 
 /* Step 2: Inspect and study the data coming back, this is YOUR 
    github info! You will need to understand the structure of this 
@@ -27,7 +30,7 @@
 const followersArray = [];
 
 /* Step 3: Create a function that accepts a single object as its only argument,
-          Using DOM methods and properties, create a component that will return the following DOM element:
+  Using DOM methods and properties, create a component that will return the following DOM element:
 
 <div class="card">
   <img src={image url of user} />
@@ -45,6 +48,30 @@ const followersArray = [];
 </div>
 
 */
+function elementCreator(element, parent){
+  let parentDiv = document || parent ;
+  parentDiv.createElement(element);
+  parentDiv.appendChild(element);
+  return parentDiv;
+}
+
+class Card{
+  constructor(data){
+    this.div = elementCreator("div");
+    this.div.classList.add("card");
+    const image = elementCreator("img");
+    image.src = data.avatar_url;
+    console.log(image);
+  }
+}
+
+function cardCreator(cardData){
+  const card = new Card(cardData);
+  console.log("I made a "+card+" card");
+}
+
+roland = axios.get('https://api.github.com/users/Rjarvis');
+cardCreator(roland);
 
 /* List of LS Instructors Github username's: 
   tetondan
